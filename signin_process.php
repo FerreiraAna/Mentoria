@@ -1,8 +1,11 @@
 <?php
-include 'conexao.php'
+include 'conexao.php'; // Falta um ponto e vírgula aqui ( era o que faltava , por isso dava aquele erro)
+
 // Verificar se o formulário de login foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   
+
+    // Verificar se os campos de username e password estão preenchidos
+    if (!empty($_POST['username']) && !empty($_POST['password'])) {
         // Escapar caracteres especiais para evitar injeção de SQL
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -35,5 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Um ou ambos os campos estão vazios
         echo "Por favor, preencha todos os campos.";
     }
-
+}
 ?>
+
